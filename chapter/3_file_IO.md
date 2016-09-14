@@ -129,13 +129,13 @@
 	void my_open_creat(const char* path)
 	{
  	   int ok=0;
-  	  ok=open(path,O_RDONLY|O_CREAT,S_IWUSR|S_IWUSR);
-    output_message(ok,"open creat ",path);
+  	   ok=open(path,O_RDONLY|O_CREAT,S_IRUSR|S_IWUSR);
+    	   output_message(ok,"open creat ",path);
 	}
 	void my_open_creat_excl(const char* path)
 	{
-   	 int ok=0;
-   	 ok=open(path,O_RDONLY|O_CREAT|O_EXCL,S_IWUSR|S_IWUSR);//open a file,creat excl option
+   	  int ok=0;
+   	  ok=open(path,O_RDONLY|O_CREAT|O_EXCL,S_IWUSR|S_IWUSR);//open a file,creat excl option
   	  output_message(ok,"open creat excl ",path);
 	}
 	int main(int argc, char *argv[])
@@ -166,7 +166,7 @@
 
 	- 若文件存在：
 		- 简单的`open()`和`openat()`成功打开
-		- 带`O_CREAT`选项的`open()`成功打开
+		- 带`O_CREAT`选项的`open()`成功打开 [此处经检验，如果文件存在，结果失败]
 		- 带`O_CREAT|O_EXCL`选项的`open()`打开失败
 		- `creat()`成功打开并且将文件截断为0
 	- 若文件不存在：
